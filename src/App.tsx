@@ -3,7 +3,13 @@ import UserLinks from './components/UserLinks';
 import CategoryLinks from './components/CategoryLinks';
 import './styles/components.css';
 import Navigation from './components/Navigation';
+import ColorPicker from './components/ColorPicker';
+import Background from './components/Background';
+import { useState } from 'react';
+
 function App() {
+    const [bgColor, setBgColor] = useState('bg-red-500');
+    
     return (
         <Router>
             <div className="app-container">
@@ -17,6 +23,8 @@ function App() {
                         <Route path="/category/:categoryName" element={<CategoryLinks />} />
                     </Routes>
                 </main>
+                <Background color={bgColor} />
+                <ColorPicker onSelectColor={setBgColor} />
             </div>
         </Router>
     );

@@ -1,9 +1,8 @@
-import background from '../assets/macwall.jpg'
+/* import background from '../assets/macwall.jpg' */
 
-function Background() {
+function Background({ color = 'bg-red-500' }: { color?: string }) {
     return (
-        <div className='bg-white blur-none h-screen w-fit absolute top-0 left-0 z-[-1] '>
-            <img src={background} alt="background" className='object-cover bg-repeat h-auto w-[100vw]' />
+        <div className={`${color} blur-none h-screen w-screen fixed top-0 left-0 z-[-1] transition-colors duration-300`}>
         </div>
     )
 }
