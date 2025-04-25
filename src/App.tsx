@@ -1,7 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import UserLinks from './components/UserLinks';
 import CategoryLinks from './components/CategoryLinks';
-import './styles/components.css';
 import Navigation from './components/Navigation';
 import ColorPicker from './components/ColorPicker';
 import Background from './components/Background';
