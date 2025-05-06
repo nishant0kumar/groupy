@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import userData from '../data/userData';
-import { data } from 'react-router-dom';
 
 interface Todo {
     id: number;
