@@ -78,14 +78,14 @@ if (storedUserData) {
 }
 
 // Function to increment click count and save to local storage
-export const incrementClickCount = (categoryName: string, linkName: string): void => {
+/*export const incrementClickCount = (categoryName: string, linkName: string): void => {
     const category = userData.categories.find(cat => cat.name === categoryName);
     const link = category?.links.find(link => link.name === linkName);
     if (link) {
         link.clickCount++;
         saveUserData(userData); // Save updated data to local storage
     }
-};
+};*/
 
 // Save user data to local storage whenever it changes (e.g., after incrementing click count)
 saveUserData(userData);
