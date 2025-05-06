@@ -29,7 +29,7 @@ function UserLinks() {
                             to={`/category/${selectedCategory.toLowerCase()}`}
                             className="px-4 py-2 bg-black/10 hover:bg-black/20 rounded-lg transition-all duration-300 text-sm font-medium"
                         >
-                            More Details →
+                            <p>More Details →</p>
                         </Link>
                     </div>
                     <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 gap-4">
@@ -55,10 +55,10 @@ function UserLinks() {
 
         {/* Dock */}
         <div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-10">
-            <div className="dock-bg backdrop-blur-xl bg-white/20 px-6 py-2 rounded-2xl shadow-2xl border border-white/20">
-                <div className="flex items-center justify-center gap-2">
+            <div className="dock-bg backdrop-blur-xl bg-trasparent/10 px-14 py-2 rounded-2xl shadow-2xl border border-grey/20">
+                <div className="flex items-center justify-center gap-4">
                     {userData.categories.map(category => (
-                        <Link 
+                        <Link
                             key={category.name}
                             to={`/category/${category.name.toLowerCase()}`}
                             onClick={(e) => handleCategoryClick(e, category.name)}

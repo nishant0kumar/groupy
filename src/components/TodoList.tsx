@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import userData from '../data/userData';
+import { data } from 'react-router-dom';
 
 interface Todo {
     id: number;
@@ -10,6 +11,48 @@ interface Todo {
         name: string;
         url: string;
     };
+}
+
+const Todo: Todo = {
+    id: 0,
+    text: '',
+    completed: false,
+    category: 'Personal',
+    link: {
+        name: '',
+        url: ''
+    }
+}
+console.log(Todo);
+
+const saveTodo = (data: Todo): void => {
+    try {
+        const serializedData = JSON.stringify(data);
+        localStorage.setItem('TodoList', serializedData);
+    } catch (error) {
+        console.error("Failed to save user data to local storage:", error);
+    }
+};
+
+const loadTodo = (): Todo | null => {
+    try {
+        const serializedData = localStorage.getItem('Todo');
+        if (serializedData === null) {
+            return null;
+        }
+        return JSON.parse(serializedData) as Todo;
+    } catch (error) {
+        console.error("Failed to load user data from local storage:", error);
+        return null;
+    }
+};
+
+const storedUserData = loadTodo();
+if (storedUserData) {
+    Todo.id = storedUserData.id;
+    Todo.text = storedUserData.text;
+    Todo.completed = storedUserData.completed;
+    Todo.link = storedUserData.link;
 }
 
 function TodoList() {
@@ -32,6 +75,7 @@ function TodoList() {
         }]);
         setNewTodo('');
         setShowLinkSelect(false);
+        saveTodo(Todo);
     };
 
     const toggleTodo = (id: number) => {
@@ -45,7 +89,7 @@ function TodoList() {
     };
 
     return (
-        <div className="max-w-2xl mx-auto my-8 p-6 bg-white/50 backdrop-blur-xl rounded-2xl shadow-lg">
+        <div className="max-w-2xl mx-auto my-8 p-6 bg-transparent/10 backdrop-blur-xl rounded-2xl shadow-lg">
             <div className="flex justify-between items-center mb-6">
                 <h2 className="text-2xl font-bold">Today's Tasks</h2>
                 <select
@@ -113,7 +157,7 @@ function TodoList() {
                 {todos.map(todo => (
                     <div
                         key={todo.id}
-                        className="flex items-center gap-3 p-3 rounded-xl hover:bg-white/60 transition-all group"
+                        className="flex items-center gap-3 p-3 bg-white/20 rounded-xl hover:bg-white/60 transition-all group"
                     >
                         <input
                             type="checkbox"
@@ -125,7 +169,7 @@ function TodoList() {
                             <div className={`${todo.completed ? 'line-through text-gray-500' : ''}`}>
                                 {todo.text}
                             </div>
-                            <div className="text-xs text-gray-500 mt-0.5">
+                            <div className="text-xs text-black-500 mt-0.5">
                                 {todo.category} {todo.link && `• ${todo.link.name}`}
                             </div>
                         </div>
@@ -148,7 +192,7 @@ function TodoList() {
                     </div>
                 ))}
                 {todos.length === 0 && (
-                    <div className="text-center text-gray-500 py-4">
+                    <div className="text-center text-black-500 py-4">
                         No tasks yet. Add one above!
                     </div>
                 )}

@@ -4,6 +4,7 @@ function WeatherDetails() {
     const [weatherData, setWeatherData] = useState<any>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
+    let location = 'Republic of india';
 
     useEffect(() => {
         const fetchWeather = async () => {
@@ -11,7 +12,7 @@ function WeatherDetails() {
                 setLoading(true);
                 const API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
                 const response = await fetch(
-                    `https://api.openweathermap.org/data/2.5/weather?q=Delhi&units=metric&appid=${API_KEY}`
+                    `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=${API_KEY}`
                 );
                 if (!response.ok) {
                     throw new Error('Weather data not available');
