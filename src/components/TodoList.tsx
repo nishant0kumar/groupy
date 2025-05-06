@@ -13,47 +13,7 @@ interface Todo {
     };
 }
 
-const Todo: Todo = {
-    id: 0,
-    text: '',
-    completed: false,
-    category: 'Personal',
-    link: {
-        name: '',
-        url: ''
-    }
-}
-console.log(Todo);
 
-const saveTodo = (data: Todo): void => {
-    try {
-        const serializedData = JSON.stringify(data);
-        localStorage.setItem('TodoList', serializedData);
-    } catch (error) {
-        console.error("Failed to save user data to local storage:", error);
-    }
-};
-
-const loadTodo = (): Todo | null => {
-    try {
-        const serializedData = localStorage.getItem('Todo');
-        if (serializedData === null) {
-            return null;
-        }
-        return JSON.parse(serializedData) as Todo;
-    } catch (error) {
-        console.error("Failed to load user data from local storage:", error);
-        return null;
-    }
-};
-
-const storedUserData = loadTodo();
-if (storedUserData) {
-    Todo.id = storedUserData.id;
-    Todo.text = storedUserData.text;
-    Todo.completed = storedUserData.completed;
-    Todo.link = storedUserData.link;
-}
 
 function TodoList() {
     const [todos, setTodos] = useState<Todo[]>([]);
